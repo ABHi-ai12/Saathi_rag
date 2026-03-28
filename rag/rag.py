@@ -1,5 +1,4 @@
-from langchain.chat_models import ChatOpenAI
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_openai import ChatOpenAI
 from langchain.vectorstores import Chroma
 from langchain.document_loaders import TextLoader
 from langchain.chains import RetrievalQA

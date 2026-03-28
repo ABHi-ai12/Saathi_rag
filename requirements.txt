@@ -1,8 +1,9 @@
 fastapi
 uvicorn
 langchain
-openai
 chromadb
 tiktoken
 python-dotenv
 numpy
+langchain-openai
+openai
