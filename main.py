@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+import uvicorn
 from pydantic import BaseModel
 import json
 import numpy as np
@@ -15,7 +16,7 @@ print("KEY:", api_key)
 app = FastAPI()
 
 # Load knowledge
-with open("data/knowledge.json", "r") as f:
+with open("data/knowledge.json", "r", encoding="utf-8") as f:
     knowledge = json.load(f)
 
 texts = [item["content"] for item in knowledge]
@@ -28,7 +29,20 @@ embeddings = np.array([simple_embed(t) for t in texts])
 
 print("RAG Server Ready ✅")
 
-qa_chain = load_rag()
+# Lazy RAG loader
+qa_chain = None
+
+def get_qa_chain():
+    global qa_chain
+    if qa_chain is None:
+        try:
+            print("Initializing RAG... ⏳")
+            qa_chain = load_rag()
+            print("RAG Loaded ✅")
+        except Exception as e:
+            print(f"RAG Error: {str(e)}")
+            # Fallback or re-try later
+    return qa_chain
 
 # Models
 class QueryRequest(BaseModel):
@@ -69,5 +83,16 @@ def home():
 # Chat
 @app.post("/chat")
 def chat(req: ChatRequest):
-    response = qa_chain.run(req.message)
-    return {"reply": response}
+    chain = get_qa_chain()
+    if not chain:
+        return {"reply": "Sorry, AI assistant is starting up or failed to load. Please check logs."}
+    
+    try:
+        response = chain.run(req.message)
+        return {"reply": response}
+    except Exception as e:
+        print(f"Chat Error: {str(e)}")
+        return {"reply": f"Sorry, encountered an error: {str(e)}"}
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=10000)

@@ -6,4 +6,6 @@ tiktoken
 python-dotenv
 numpy
 langchain-openai
+langchain-community
+langchain-chroma
 openai
