@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "topic": "loneliness",
+    "content": "Akela feel karna bohot common hai. Studies kehte hain ki 60% young adults kabhi na kabhi lonely feel karte hain. Iska matlab ye nahi ki tum weak ho — bas thoda connection chahiye. Kisi se baat karo, chahe chhoti si baat ho.",
+    "tags": ["lonely", "alone", "akela", "isolation"]
+  },
+  {
+    "id": 2,
+    "topic": "anxiety",
+    "content": "Anxiety mein deep breathing bohot kaam karti hai. 4-7-8 technique try kar: 4 second inhale, 7 second hold, 8 second exhale. Ye nervous system ko calm karta hai. Roz 5 minute practice karna start kar.",
+    "tags": ["anxiety", "anxious", "nervous", "tension", "ghabrahat"]
+  },
+  {
+    "id": 3,
+    "topic": "stress",
+    "content": "Stress normal hai, lekin zyada stress harmful hai. Break lena zaroori hai — even 10 minute walk se cortisol level kam hota hai. Apne kaam ko chhote tasks mein tod, ek ek karke kar. Sab ek saath karne ki zaroorat nahi.",
+    "tags": ["stress", "tension", "pressure", "pareshan", "overwork"]
+  },
+  {
+    "id": 4,
+    "topic": "sadness",
+    "content": "Udaas hona ek natural emotion hai, isse dabana mat. Kabhi kabhi rone se bhi acha lagta hai — ye body ka release mechanism hai. Apne feelings ko accept karna pehla step hai better feel karne ka.",
+    "tags": ["sad", "udaas", "cry", "rona", "dukhi", "unhappy"]
+  },
+  {
+    "id": 5,
+    "topic": "self-care",
+    "content": "Self-care selfish nahi hai, zaroori hai. Basic cheezein: 7-8 ghante neend, din mein 2-3 litre paani, thoda sunlight, aur koi ek cheez jo tujhe khush kare. Chhoti chhoti cheezein bada fark dalti hain.",
+    "tags": ["self-care", "selfcare", "health", "routine"]
+  },
+  {
+    "id": 6,
+    "topic": "sleep",
+    "content": "Neend bohot important hai mental health ke liye. Screen band kar 30 min pehle sone se. Room thoda dark aur cool rakh. Ek fixed time pe sona try kar — body ki clock set hoti hai isse.",
+    "tags": ["sleep", "neend", "insomnia", "nahi aati", "sona"]
+  },
+  {
+    "id": 7,
+    "topic": "motivation",
+    "content": "Motivation roz nahi aayega — aur ye normal hai. Discipline motivation se zyada kaam karta hai. Chhota sa start kar, bas 5 minute. Ek baar shuru kiya toh momentum khud aata hai.",
+    "tags": ["motivation", "lazy", "procrastinate", "mann nahi", "kaam"]
+  },
+  {
+    "id": 8,
+    "topic": "relationships",
+    "content": "Rishte mein ups-downs normal hain. Communication sabse important hai — apni feelings clearly bol, mind-reading expect mat kar. Aur suno bhi dhyan se. Kabhi kabhi space dena bhi pyaar hota hai.",
+    "tags": ["relationship", "rishta", "breakup", "fight", "partner", "pyaar"]
+  },
+  {
+    "id": 9,
+    "topic": "anger",
+    "content": "Gussa aana normal hai, lekin react karne se pehle 10 second ruk. Deep breath le. Gusse mein boli gayi baatein wapas nahi aati. Baad mein baat kar jab calm ho — tab better communicate kar payega.",
+    "tags": ["angry", "gussa", "irritated", "frustration", "chidchida"]
+  },
+  {
+    "id": 10,
+    "topic": "exam-stress",
+    "content": "Exam ka stress sabko hota hai. Pomodoro technique use kar: 25 min padhai, 5 min break. Notes mein key points likh, pura chapter mat ratna. Aur haan — ek exam se life decide nahi hoti, yaad rakh.",
+    "tags": ["exam", "study", "padhai", "marks", "result", "fail"]
+  },
+  {
+    "id": 11,
+    "topic": "confidence",
+    "content": "Confidence ek skill hai, personality trait nahi. Chhoti chhoti wins celebrate kar. Mirror mein khud se bol: 'Main kar sakta hoon.' Comparisons band kar — apna pace apna hai.",
+    "tags": ["confidence", "shy", "insecure", "comparison", "self-doubt"]
+  },
+  {
+    "id": 12,
+    "topic": "gratitude",
+    "content": "Roz 3 cheezein likh jo achhi hui — chahe kitni chhoti ho. Gratitude practice se brain ka focus negative se positive pe shift hota hai. Ye scientifically proven hai happiness badhane ke liye.",
+    "tags": ["gratitude", "thankful", "positive", "happiness", "khushi"]
+  },
+  {
+    "id": 13,
+    "topic": "social-media",
+    "content": "Social media pe sab apni best life dikhate hain — real life nahi. Compare mat kar. Agar scroll karne ke baad bura lagta hai, toh break le. Notification off kar, apne pace pe use kar.",
+    "tags": ["social-media", "instagram", "comparison", "fomo", "online"]
+  },
+  {
+    "id": 14,
+    "topic": "overthinking",
+    "content": "Overthinking mein ek trick kaam karti hai: apne aap se puchh 'Kya ye 5 saal baad matter karega?' Agar nahi, toh zyada mat soch. Present mein reh, kal ka tension kal dekhenge.",
+    "tags": ["overthinking", "sochna", "zyada sochna", "thoughts", "rumination"]
+  },
+  {
+    "id": 15,
+    "topic": "crisis-helpline",
+    "content": "Agar bohot bura lag raha hai aur kisi se baat karni hai, toh iCall helpline pe call kar: 9152987821. AASRA: 9820466726. Ye trained counselors hain jo tujhe samjhenge. Akela mat reh.",
+    "tags": ["suicide", "helpline", "crisis", "emergency", "harm", "marna"]
+  }
+]
