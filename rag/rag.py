@@ -1,8 +1,11 @@
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langchain.docstore.document import Document
-from langchain.chains import RetrievalQA
 import os
 import json
+
+try:
+    from langchain_core.documents import Document
+except ImportError:
+    from langchain.docstore.document import Document
 
 # Keep compatibility across LangChain package split versions.
 try:
@@ -64,10 +67,24 @@ def load_rag():
         model="mistralai/mistral-7b-instruct"
     )
 
-    # 5. Create Chain
-    qa = RetrievalQA.from_chain_type(
-        llm=llm,
-        retriever=retriever
-    )
+    # 5. Lightweight QA wrapper to avoid version-specific chain imports.
+    class SimpleQA:
+        def __init__(self, llm_client, retriever_client):
+            self.llm = llm_client
+            self.retriever = retriever_client
 
-    return qa
+        def run(self, query: str) -> str:
+            docs = self.retriever.invoke(query)
+            context = "\n\n".join(doc.page_content for doc in docs) if docs else ""
+
+            prompt = (
+                "You are a helpful assistant. Use only the provided context. "
+                "If answer is not in context, say you don't know.\n\n"
+                f"Context:\n{context}\n\n"
+                f"Question: {query}"
+            )
+
+            response = self.llm.invoke(prompt)
+            return getattr(response, "content", str(response))
+
+    return SimpleQA(llm, retriever)
