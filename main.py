@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+import uvicorn
 from pydantic import BaseModel
 import faiss
 import numpy as np
@@ -53,3 +54,10 @@ def search(req: QueryRequest):
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+@app.get("/")
+def home():
+    return {"message": "RAG running 🚀"}
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="[IP_ADDRESS]", port=10000)
