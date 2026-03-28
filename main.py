@@ -9,7 +9,7 @@ from rag.rag import load_rag
 
 # Load env
 load_dotenv()
-api_key = os.getenv("OPENAI_API_KEY")
+api_key = os.getenv("OPENROUTER_API_KEY")
 print("KEY:", api_key)
 
 app = FastAPI()
