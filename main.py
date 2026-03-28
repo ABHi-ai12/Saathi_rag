@@ -1,63 +1,73 @@
 from fastapi import FastAPI
-import uvicorn
 from pydantic import BaseModel
-import faiss
-import numpy as np
 import json
-from sentence_transformers import SentenceTransformer
+import numpy as np
+from dotenv import load_dotenv
+import os
+
+from rag.rag import load_rag
+
+# Load env
+load_dotenv()
+api_key = os.getenv("OPENAI_API_KEY")
+print("KEY:", api_key)
 
 app = FastAPI()
 
-# Load model + data
-print("Loading model... ⏳")
-model = SentenceTransformer("all-MiniLM-L6-v2")
-
+# Load knowledge
 with open("data/knowledge.json", "r") as f:
     knowledge = json.load(f)
 
 texts = [item["content"] for item in knowledge]
 
-# Build FAISS index
-print("Building FAISS index... ⏳")
-embeddings = model.encode(texts, convert_to_numpy=True)
-dimension = embeddings.shape[1]
+# 🔥 SIMPLE embedding (dummy lightweight)
+def simple_embed(text):
+    return np.array([len(text)])  # lightweight trick
 
-index = faiss.IndexFlatL2(dimension)
-index.add(embeddings.astype(np.float32))
+embeddings = np.array([simple_embed(t) for t in texts])
 
 print("RAG Server Ready ✅")
 
-# Request model
+qa_chain = load_rag()
+
+# Models
 class QueryRequest(BaseModel):
     query: str
     top_k: int = 2
 
+class ChatRequest(BaseModel):
+    message: str
+
+# 🔍 Search endpoint
 @app.post("/search")
 def search(req: QueryRequest):
-    query_embedding = model.encode([req.query], convert_to_numpy=True)
-    
-    distances, indices = index.search(
-        query_embedding.astype(np.float32), 
-        req.top_k
-    )
-    
+    query_embedding = simple_embed(req.query)
+
+    distances = np.linalg.norm(embeddings - query_embedding, axis=1)
+    indices = distances.argsort()[:req.top_k]
+
     results = []
-    for i, idx in enumerate(indices[0]):
+    for i in indices:
         results.append({
-            "content": knowledge[idx]["content"],
-            "topic": knowledge[idx]["topic"],
-            "score": float(distances[0][i])
+            "content": knowledge[i]["content"],
+            "topic": knowledge[i]["topic"],
+            "score": float(distances[i])
         })
-    
+
     return {"results": results}
 
+# Health
 @app.get("/health")
 def health():
     return {"status": "ok"}
 
+# Home
 @app.get("/")
 def home():
     return {"message": "RAG running 🚀"}
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="[IP_ADDRESS]", port=10000)
+# Chat
+@app.post("/chat")
+def chat(req: ChatRequest):
+    response = qa_chain.run(req.message)
+    return {"reply": response}
